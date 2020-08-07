@@ -7,5 +7,7 @@
 }
 
 .Gallery-header-image {
-  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 99%;
 }
