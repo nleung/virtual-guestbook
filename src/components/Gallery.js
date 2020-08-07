@@ -11,7 +11,7 @@ class Gallery extends React.Component {
           width="1430px"
           height="212px"
         />
-        <div class="Gallery-header">MELISSA & SAMUEL</div>
+        <div class="Gallery-header">MELISSA & SAMUEL'S GUESTBOOK</div>
         <div class="container px-0">
           <div class="row">
             <div class="col-lg">

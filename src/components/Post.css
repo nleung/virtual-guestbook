@@ -1,17 +1,23 @@
 .Post {
   border: 1px solid !important;
-  border-color: #999999 !important;
+  border-color: #80765B !important;
   border-radius: 16px;
-
+  color: #80765B;
 }
 
 .Post-header {
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: uppercase;
   text-align: left;
   font-weight: bold;
   padding: 0.7rem;
+  font-size: 1.4rem;
 }
 
 .Post-comment {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
   text-align: left;
   padding: 0.7rem;
+  font-weight: bold;
 }
