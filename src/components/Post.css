@@ -1,0 +1,17 @@
+.Post {
+  border: 1px solid !important;
+  border-color: #999999 !important;
+  border-radius: 16px;
+
+}
+
+.Post-header {
+  text-align: left;
+  font-weight: bold;
+  padding: 0.7rem;
+}
+
+.Post-comment {
+  text-align: left;
+  padding: 0.7rem;
+}
