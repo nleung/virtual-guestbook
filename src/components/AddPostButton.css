@@ -1,0 +1,37 @@
+.AddPostButton {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  background-color: #fffffd;
+  color: #80765B;
+  border-color: #80765B;
+}
+
+.AddPostIcon {
+  vertical-align: middle;
+}
+
+.btn-outline-primary {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #80765B;
+  border-color: #80765B;
+  background-color: #fffffd;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.selected {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.4rem !important;
+  font-weight: bold !important;
+  color: #fffffd !important;
+  border-color: #80765B !important;
+  background-color: #80765B !important;
+}
+
+.Modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bold;
+}
