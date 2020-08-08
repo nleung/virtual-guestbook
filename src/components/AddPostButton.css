@@ -31,7 +31,27 @@
   background-color: #80765B !important;
 }
 
+.btn-outline-secondary,
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active,
+.btn-outline-secondary.selected {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.0rem !important;
+  font-weight: bold !important;
+}
+
+.btn-outline-success,
+.btn-outline-success:hover,
+.btn-outline-success:focus,
+.btn-outline-success:active,
+.btn-outline-success.selected {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.0rem !important;
+  font-weight: bold !important;
+}
+
 .Modal-title {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: bold;
+  font-weight: bold !important;
 }

@@ -27,7 +27,7 @@ class AddPostButton extends React.Component {
           <BsPlusCircle className="AddPostIcon" />&nbsp;&nbsp;Sign the Guestbook
         </Button>
 
-        <Modal className="Modal-title" show={this.state.show} onHide={handleClose}>
+        <Modal className="Modal-title" show={this.state.show} onHide={handleClose} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
             <Modal.Title>Sign the Guestbook</Modal.Title>
           </Modal.Header>
