@@ -14,7 +14,45 @@ class AddPostButton extends React.Component {
     super(props);
     this.state = {
       show: false,
+      event_id: 'sammel',
+      name: '',
+      comment: ''
     };
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleSave = () => {
+    const {event_id, name, comment} = this.state
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event_id: event_id,
+        name: name,
+        comment: comment
+      })
+    };
+    fetch('https://virtual-guestbook-service.herokuapp.com/api/posts/create', requestOptions)
+      .then(response => response.json())
+      .then(
+        (data) => {
+          this.setState({
+            error: null
+          });
+          this.props.onUpdate()
+        },
+        (error) => {
+          console.log(error)
+          this.setState({
+            error
+          });
+        }
+      );
+
+    this.setState({show: false});
   }
 
   render() {
@@ -36,7 +74,7 @@ class AddPostButton extends React.Component {
               <Form.Group as={Row} controlId="formName">
                 <Form.Label column sm="2">Name</Form.Label>
                 <Col sm="10">
-                  <Form.Control type="name" placeholder="Enter name" />
+                  <Form.Control type="name" name="name" placeholder="Enter name" onChange={this.onChange} />
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="formPicture">
@@ -48,7 +86,7 @@ class AddPostButton extends React.Component {
               <Form.Group as={Row} controlId="formComment">
                 <Form.Label column sm="2">Comment</Form.Label>
                 <Col sm="10">
-                  <Form.Control as="textarea" rows="3" />
+                  <Form.Control as="textarea" name="comment" placeholder="Leave a comment" rows="3" onChange={this.onChange} />
                 </Col>
               </Form.Group>
             </Form>
@@ -57,7 +95,7 @@ class AddPostButton extends React.Component {
             <Button variant="outline-secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="outline-success" onClick={handleClose}>
+            <Button variant="outline-success" onClick={this.handleSave}>
               Save
             </Button>
           </Modal.Footer>

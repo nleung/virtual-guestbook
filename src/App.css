@@ -38,3 +38,17 @@
     transform: rotate(360deg);
   }
 }
+
+.Gallery-header {
+  font-size: 3.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #80765B;
+  padding-top: 4.2rem;
+  padding-bottom: 4.2rem;
+}
+
+.Gallery-header-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 99%;
+}

@@ -9,9 +9,6 @@ class Post extends React.Component {
         <img
           className="img-fluid w-100"
           src={this.props.imageURL}
-          alt="Leung family"
-          height="300"
-          width="300"
         />
         <div className="Post-comment">{this.props.comment}</div>
       </div>

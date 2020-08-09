@@ -8,31 +8,105 @@ import AddPostButton from './AddPostButton';
 import './Gallery.css'
 
 class Gallery extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      posts: []
+    };
+  }
+
+  getPosts = () => {
+    fetch('https://virtual-guestbook-service.herokuapp.com/api/posts/sammel')
+      .then(res => res.json())
+      .then(
+        (data) => {
+          this.setState({
+            isLoaded: true,
+            posts: data.posts,
+            error: null
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  componentDidMount() {
+    this.getPosts()
+  }
+
   render() {
-    return (
-      <div>
-        <img className="Gallery-header-image"
-          src="https://qa-media-api.xogrp.com/images/d0b995a2-0670-4093-ba5b-99611a8c427e~rt_auto-rs_3000.h?ordering=explicit"
-        />
-        <div className="Gallery-header">MELISSA & SAMUEL'S GUESTBOOK</div>
+    const { error, isLoaded, posts } = this.state;
+
+    const addPostButton = (
+      <>
         <div className="Gallery-add-post-button">
-          <AddPostButton />
+          <AddPostButton onUpdate={this.getPosts} />
         </div>
-        <Container>
-          <Row>
-            <Col lg>
-              <Post name="Harry & Megan" comment="Congratulations on your big day!" imageURL="https://www.hellomagazine.com/imagenes/brides/2019123182528/stylish-celebrity-wedding-guests-2019/0-397-808/stylish-celebrity-wedding-guests-m.jpg"/>
-            </Col>
-            <Col lg>
-              <Post name="William & Kate" comment="So happy for you guys!" imageURL="https://ta-images.condecdn.net/image/67yAm7JKPEv/crop/405/f/Duchess-of-Cambridge-at-Zara-Philips-tatler-14mar17-getty_b.jpg"/>
-            </Col>
-            <Col lg>
-              <Post name="Queen E" comment="Chip chip cheerio" imageURL="https://media1.popsugar-assets.com/files/thumbor/5eZOJ8KSZdob-ilYldZOP73QJGw/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2018/05/19/691/n/1922564/0e4d4d7ff9755d30_GettyImages-960084754/i/Queen-Elizabeth-Dress-Royal-Wedding-2018.jpg"/>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
+      </>
+    )
+
+    if (error) {
+      return <div>{addPostButton}Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>{addPostButton}Loading...</div>;
+    } else {
+      const elements = []
+      var i;
+      for (i = 0; i < posts.length; i += 3) {
+        if (i == posts.length-1) {
+          elements.push(
+            <Row>
+              <Col lg>
+                <Post name={posts[i].name} comment={posts[i].comment} imageURL={posts[i].picture_url} />
+              </Col>
+              <Col lg/>
+              <Col lg/>
+            </Row>
+          )
+        } else if (i == posts.length-2) {
+          elements.push(
+            <Row>
+              <Col lg>
+                <Post name={posts[i].name} comment={posts[i].comment} imageURL={posts[i].picture_url} />
+              </Col>
+              <Col lg>
+                <Post name={posts[i+1].name} comment={posts[i+1].comment} imageURL={posts[i+1].picture_url} />
+              </Col>
+              <Col lg/>
+            </Row>
+          )
+        } else {
+          elements.push(
+            <Row>
+              <Col lg>
+                <Post name={posts[i].name} comment={posts[i].comment} imageURL={posts[i].picture_url} />
+              </Col>
+              <Col lg>
+                <Post name={posts[i+1].name} comment={posts[i+1].comment} imageURL={posts[i+1].picture_url} />
+              </Col>
+              <Col lg>
+                <Post name={posts[i+2].name} comment={posts[i+2].comment} imageURL={posts[i+2].picture_url} />
+              </Col>
+            </Row>
+          )
+        }
+      }
+      return (
+        <div className="Gallery">
+          {addPostButton}
+          <Container>
+            {elements}
+          </Container>
+        </div>
+      );
+    }
   }
 }
 
