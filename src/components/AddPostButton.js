@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsPlusCircle } from "react-icons/bs";
+import Resizer from 'react-image-file-resizer';
 
 import './AddPostButton.css'
 import {createPost, getSignedUrl} from '../clients/Guestbook.js'
@@ -62,12 +63,33 @@ class AddPostButton extends React.Component {
     const file_parts = e.target.value.split('\\');
     const file_name = Date.now() + "-" + file_parts[file_parts.length - 1];
 
-    this.setState({
-      "file": file,
-      "file_name": file_name
-    })
+    Resizer.imageFileResizer(
+        file,
+        500,
+        500,
+        'JPEG',
+        100,
+        0,
+        uri => {
+          const resizedFile = this.dataURLtoFile(uri, file_name)
+          this.setState({
+            "file": resizedFile,
+            "file_name": file_name
+          })
 
-    getSignedUrl(file_name, file.type, this.onGetSignedUrlSuccess, this.onError);
+          getSignedUrl(file_name, "image/jpeg", this.onGetSignedUrlSuccess, this.onError);
+        },
+        'base64'
+    );
+  };
+
+  dataURLtoFile = (dataurl, filename) => {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, {type:mime});
   };
 
   handleSave = () => {
@@ -90,7 +112,10 @@ class AddPostButton extends React.Component {
   }
 
   handleClose = () => {
-    this.setState({show: false});
+    this.setState({
+      show: false,
+      picture_url: undefined
+    });
   }
 
   handleShow = () => {
@@ -109,6 +134,7 @@ class AddPostButton extends React.Component {
         </Row>
       )
     }
+
     return (
       <>
         <Button variant="outline-primary" size="lg" onClick={this.handleShow}>
