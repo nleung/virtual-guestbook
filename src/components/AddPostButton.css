@@ -55,3 +55,7 @@
   font-family: 'Cormorant Garamond', serif;
   font-weight: bold !important;
 }
+
+.Image-preview {
+  padding-bottom: 1rem;
+}

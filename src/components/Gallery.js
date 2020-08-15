@@ -60,7 +60,7 @@ class Gallery extends React.Component {
       const elements = []
       var i;
       for (i = 0; i < posts.length; i += 3) {
-        if (i == posts.length-1) {
+        if (i === posts.length-1) {
           elements.push(
             <Row>
               <Col lg>
@@ -70,7 +70,7 @@ class Gallery extends React.Component {
               <Col lg/>
             </Row>
           )
-        } else if (i == posts.length-2) {
+        } else if (i === posts.length-2) {
           elements.push(
             <Row>
               <Col lg>

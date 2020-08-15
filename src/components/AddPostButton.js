@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsPlusCircle } from "react-icons/bs";
 
-import AddPostModal from './AddPostModal'
 import './AddPostButton.css'
+import {createPost, getSignedUrl} from '../clients/Guestbook.js'
 
 class AddPostButton extends React.Component {
   constructor(props) {
@@ -16,56 +16,106 @@ class AddPostButton extends React.Component {
       show: false,
       event_id: 'sammel',
       name: '',
-      comment: ''
+      picture_url: '',
+      comment: '',
+      file: null,
+      file_name: ''
     };
-  }
+  };
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
-  handleSave = () => {
-    const {event_id, name, comment} = this.state
+  onError = (error) => {
+    console.log(error)
+    this.setState({
+      error
+    });
+  };
+
+  onGetSignedUrlSuccess = (signedUrl, objectUrl) => {
+    const {file, file_name} = this.state
+
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('key', file_name)
+
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event_id: event_id,
-        name: name,
-        comment: comment
-      })
+      method: 'PUT',
+      body: this.state.file
     };
-    fetch('https://virtual-guestbook-service.herokuapp.com/api/posts/create', requestOptions)
-      .then(response => response.json())
+
+    fetch(signedUrl, requestOptions)
       .then(
-        (data) => {
-          this.setState({
-            error: null
-          });
-          this.props.onUpdate()
+        (result) => {
+          this.setState({ "picture_url": objectUrl });
         },
         (error) => {
-          console.log(error)
-          this.setState({
-            error
-          });
+          console.log("upload error is " + error);
         }
       );
+  };
 
+  onPictureChange = (e) => {
+    const file = e.target.files[0]
+    const file_parts = e.target.value.split('\\');
+    const file_name = Date.now() + "-" + file_parts[file_parts.length - 1];
+
+    this.setState({
+      "file": file,
+      "file_name": file_name
+    })
+
+    getSignedUrl(file_name, file.type, this.onGetSignedUrlSuccess, this.onError);
+  };
+
+  handleSave = () => {
+    const {event_id, name, picture_url, comment} = this.state
+    createPost(event_id, name, picture_url, comment,
+      (data) => {
+        this.setState({
+          error: null
+        });
+        this.props.onUpdate();
+      },
+      (error) => {
+        console.log(error)
+        this.setState({
+          error
+        });
+      }
+    );
     this.setState({show: false});
   }
 
-  render() {
-    const handleClose = () => this.setState({show: false});
-    const handleShow = () => this.setState({show: true});
+  handleClose = () => {
+    this.setState({show: false});
+  }
 
+  handleShow = () => {
+    this.setState({show: true});
+  }
+
+  render() {
+    let imagePreview;
+    if (this.state.picture_url) {
+      imagePreview = (
+        <Row>
+          <Col sm="2"/>
+          <Col sm="10" className="Image-preview">
+            <img className="img-fluid w-100" src={this.state.picture_url} alt="Preview" />
+          </Col>
+        </Row>
+      )
+    }
     return (
       <>
-        <Button variant="outline-primary" size="lg" onClick={handleShow}>
+        <Button variant="outline-primary" size="lg" onClick={this.handleShow}>
           <BsPlusCircle className="AddPostIcon" />&nbsp;&nbsp;Sign the Guestbook
         </Button>
 
-        <Modal className="Modal-title" show={this.state.show} onHide={handleClose} backdrop="static" keyboard={false}>
+        <Modal className="Modal-title" show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
             <Modal.Title>Sign the Guestbook</Modal.Title>
           </Modal.Header>
@@ -80,9 +130,10 @@ class AddPostButton extends React.Component {
               <Form.Group as={Row} controlId="formPicture">
                 <Form.Label column sm="2">Picture</Form.Label>
                 <Col sm="10">
-                  <Form.File type="picture" />
+                  <Form.File type="picture_file" onChange={this.onPictureChange}/>
                 </Col>
               </Form.Group>
+              {imagePreview}
               <Form.Group as={Row} controlId="formComment">
                 <Form.Label column sm="2">Comment</Form.Label>
                 <Col sm="10">
@@ -92,7 +143,7 @@ class AddPostButton extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-secondary" onClick={handleClose}>
+            <Button variant="outline-secondary" onClick={this.handleClose}>
               Cancel
             </Button>
             <Button variant="outline-success" onClick={this.handleSave}>
