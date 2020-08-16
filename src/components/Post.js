@@ -3,22 +3,20 @@ import './Post.css';
 
 class Post extends React.Component {
   render() {
-    const postElements = [];
-    if (this.props.name) {
-      postElements.push(<div className="Post-header">{this.props.name}</div>);
-    }
+    let image;
     if (this.props.imageURL) {
-      postElements.push(<img className="img-fluid w-100" src={this.props.imageURL} alt="Post" />);
-    } else {
-      postElements.push(<hr/>)
-    }
-    if (this.props.comment) {
-      postElements.push(<div className="Post-comment">{this.props.comment}</div>)
+      image = (
+        <img className="img-fluid w-100" src={this.props.imageURL} alt="Post" />
+      );
+    } else if (this.props.comment){
+      image = (<hr/>)
     }
 
     return (
       <div className="Post">
-        {postElements}
+        <div className="Post-header">{this.props.name}</div>
+        {image}
+        <div className="Post-comment">{this.props.comment}</div>
       </div>
     );
   }
