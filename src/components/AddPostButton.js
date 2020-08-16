@@ -65,8 +65,8 @@ class AddPostButton extends React.Component {
 
     Resizer.imageFileResizer(
         file,
-        500,
-        500,
+        1000,
+        1000,
         'JPEG',
         100,
         0,
