@@ -108,7 +108,10 @@ class AddPostButton extends React.Component {
         });
       }
     );
-    this.setState({show: false});
+    this.setState({
+      show: false,
+      picture_url: undefined
+    });
   }
 
   handleClose = () => {
