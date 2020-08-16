@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import { BsPlusCircle } from "react-icons/bs";
 import Resizer from 'react-image-file-resizer';
 
@@ -20,7 +21,7 @@ class AddPostButton extends React.Component {
       picture_url: '',
       comment: '',
       file: null,
-      file_name: ''
+      file_state: ''
     };
   };
 
@@ -50,7 +51,12 @@ class AddPostButton extends React.Component {
     fetch(signedUrl, requestOptions)
       .then(
         (result) => {
-          this.setState({ "picture_url": objectUrl });
+          if (this.state.show) {
+            this.setState({
+              "picture_url": objectUrl,
+              "file_state": "UPLOADED"
+            });
+          }
         },
         (error) => {
           console.log("upload error is " + error);
@@ -59,6 +65,8 @@ class AddPostButton extends React.Component {
   };
 
   onPictureChange = (e) => {
+    this.setState({"file_state": "UPLOADING"})
+
     const file = e.target.files[0]
     const file_parts = e.target.value.split('\\');
     const file_name = Date.now() + "-" + file_parts[file_parts.length - 1];
@@ -110,14 +118,14 @@ class AddPostButton extends React.Component {
     );
     this.setState({
       show: false,
-      picture_url: undefined
+      file_state: undefined
     });
   }
 
   handleClose = () => {
     this.setState({
       show: false,
-      picture_url: undefined
+      file_state: undefined
     });
   }
 
@@ -127,7 +135,17 @@ class AddPostButton extends React.Component {
 
   render() {
     let imagePreview;
-    if (this.state.picture_url) {
+    if (this.state.file_state === "UPLOADING") {
+      imagePreview = (
+        <Row>
+          <Col sm="2"/>
+          <Col sm="10"  className="Image-preview">
+            Uploading...
+            <ProgressBar animated now={100} variant="success"/>
+          </Col>
+        </Row>
+      );
+    } else if (this.state.file_state === "UPLOADED") {
       imagePreview = (
         <Row>
           <Col sm="2"/>
@@ -135,6 +153,21 @@ class AddPostButton extends React.Component {
             <img className="img-fluid w-100" src={this.state.picture_url} alt="Preview" />
           </Col>
         </Row>
+      );
+    }
+
+    let saveButton;
+    if (this.state.file_state === "UPLOADING") {
+      saveButton = (
+        <Button variant="outline-success" onClick={this.handleSave} disabled>
+          Save
+        </Button>
+      )
+    } else {
+      saveButton = (
+        <Button variant="outline-success" onClick={this.handleSave}>
+          Save
+        </Button>
       )
     }
 
@@ -175,9 +208,7 @@ class AddPostButton extends React.Component {
             <Button variant="outline-secondary" onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button variant="outline-success" onClick={this.handleSave}>
-              Save
-            </Button>
+            {saveButton}
           </Modal.Footer>
         </Modal>
       </>
