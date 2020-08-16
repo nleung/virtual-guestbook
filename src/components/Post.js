@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Comment from './Comment.js'
 import './Post.css';
 
 class Post extends React.Component {
@@ -16,7 +18,7 @@ class Post extends React.Component {
       <div className="Post">
         <div className="Post-header">{this.props.name}</div>
         {image}
-        <div className="Post-comment">{this.props.comment}</div>
+        <Comment text={this.props.comment} />
       </div>
     );
   }
