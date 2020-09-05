@@ -190,8 +190,8 @@ class AddPostButton extends React.Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="formPicture">
-                <Form.Label column sm="2">Picture of your family watching the wedding</Form.Label>
-                <Col sm="10">
+                <Form.Label column sm="4">Picture of your family watching the wedding</Form.Label>
+                <Col sm="8">
                   <Form.File type="picture_file" onChange={this.onPictureChange}/>
                 </Col>
               </Form.Group>
