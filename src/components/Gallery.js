@@ -18,7 +18,7 @@ class Gallery extends React.Component {
   }
 
   getPosts = () => {
-    fetch('https://virtual-guestbook-service.herokuapp.com/api/posts/sammel')
+    fetch('https://virtual-guestbook-service.herokuapp.com/api/posts/mictif')
       .then(res => res.json())
       .then(
         (data) => {

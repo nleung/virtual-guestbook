@@ -16,7 +16,7 @@ class AddPostButton extends React.Component {
     super(props);
     this.state = {
       show: false,
-      event_id: 'sammel',
+      event_id: 'mictif',
       name: '',
       picture_url: '',
       comment: '',

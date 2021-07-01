@@ -36,13 +36,13 @@ class Comment extends React.Component {
       if (this.state.expanded) {
         comment = (
           <div>
-            {this.props.text + " "}<a href="#" onClick={this.showLess}>show less</a>
+            {this.props.text + " "}<a href="#" onClick={this.showLess}>less</a>
           </div>
         );
       } else {
         comment = (
           <div>
-            {this.props.text.substring(0, LENGTH_THRESHOLD) + "... "}<a href="#" onClick={this.showMore}>show more</a>
+            {this.props.text.substring(0, LENGTH_THRESHOLD) + "... "}<a href="#" onClick={this.showMore}>more</a>
           </div>
         );
       }
