@@ -1,8 +1,8 @@
 .AddPostButton {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Taviraj', serif;
   font-size: 1.4rem;
   background-color: #fffffd;
-  color: #80765B;
+  color: #565458;
   border-color: #80765B;
 }
 
@@ -11,19 +11,20 @@
 }
 
 .btn-outline-primary {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Taviraj', serif;
   font-size: 1.4rem;
   font-weight: bold;
-  color: #80765B;
+  color: #565458;
   border-color: #80765B;
   background-color: #fffffd;
+  letter-spacing: 1px;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
 .btn-outline-primary:active,
 .btn-outline-primary.selected {
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Taviraj', serif !important;
   font-size: 1.4rem !important;
   font-weight: bold !important;
   color: #fffffd !important;
@@ -36,7 +37,7 @@
 .btn-outline-secondary:focus,
 .btn-outline-secondary:active,
 .btn-outline-secondary.selected {
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Taviraj', serif !important;
   font-size: 1.0rem !important;
   font-weight: bold !important;
 }
@@ -46,13 +47,13 @@
 .btn-outline-success:focus,
 .btn-outline-success:active,
 .btn-outline-success.selected {
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Taviraj', serif !important;
   font-size: 1.0rem !important;
   font-weight: bold !important;
 }
 
 .Modal-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Taviraj', serif;
   font-weight: bold !important;
 }
 

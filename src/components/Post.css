@@ -1,16 +1,17 @@
 .Post {
   border: 1px solid !important;
   border-color: #80765B !important;
-  border-radius: 16px;
   color: #80765B;
   margin-bottom: 3rem;
+  letter-spacing: 1px;
 }
 
 .Post-header {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Taviraj', serif;
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;
   padding: 0.7rem;
   font-size: 1.4rem;
+  letter-spacing: 1px;
 }

@@ -40,9 +40,10 @@
 }
 
 .Gallery-header {
-  font-size: 3.4rem;
-  font-family: 'Cormorant Garamond', serif;
-  color: #80765B;
+  font-size: 4rem;
+  font-family: 'Taviraj', serif;
+  letter-spacing: 6px;
+  color: #565458;
   padding-top: 4.2rem;
   padding-bottom: 4.2rem;
 }
