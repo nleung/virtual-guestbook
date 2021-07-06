@@ -40,9 +40,17 @@
 }
 
 .Gallery-header {
+  height: 600px;
+  background-image: url("header-bg.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Gallery-header-text {
   font-size: 4rem;
-  font-family: 'Taviraj', serif;
-  letter-spacing: 6px;
+  font-family: 'Delius', cursive;
+  letter-spacing: 1px;
   color: #565458;
   padding-top: 4.2rem;
   padding-bottom: 4.2rem;

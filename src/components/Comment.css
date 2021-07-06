@@ -1,5 +1,5 @@
 .Post-comment {
-  font-family: 'Taviraj', serif;
+  font-family: 'Delius', cursive;
   font-size: 1rem;
   text-align: left;
   padding: 0.7rem;
@@ -10,6 +10,6 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #80765B;
+  color: #3b4143;
   text-decoration: underline;
 }

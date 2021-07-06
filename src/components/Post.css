@@ -1,13 +1,13 @@
 .Post {
   border: 1px solid !important;
-  border-color: #80765B !important;
-  color: #80765B;
+  border-color: #3b4143 !important;
+  color: #3b4143;
   margin-bottom: 3rem;
   letter-spacing: 1px;
 }
 
 .Post-header {
-  font-family: 'Taviraj', serif;
+  font-family: 'Delius', cursive;
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;

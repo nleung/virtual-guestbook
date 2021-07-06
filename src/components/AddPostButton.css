@@ -1,9 +1,9 @@
 .AddPostButton {
-  font-family: 'Taviraj', serif;
+  font-family: 'Delius', cursive;
   font-size: 1.4rem;
   background-color: #fffffd;
   color: #565458;
-  border-color: #80765B;
+  border-color: #EEB4FF;
 }
 
 .AddPostIcon {
@@ -11,25 +11,24 @@
 }
 
 .btn-outline-primary {
-  font-family: 'Taviraj', serif;
+  font-family: 'Delius', cursive;
   font-size: 1.4rem;
   font-weight: bold;
   color: #565458;
-  border-color: #80765B;
+  border-color: #3b4143;
   background-color: #fffffd;
-  letter-spacing: 1px;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
 .btn-outline-primary:active,
 .btn-outline-primary.selected {
-  font-family: 'Taviraj', serif !important;
+  font-family: 'Delius', cursive !important;
   font-size: 1.4rem !important;
   font-weight: bold !important;
   color: #fffffd !important;
-  border-color: #80765B !important;
-  background-color: #80765B !important;
+  border-color: #EEB4FF !important;
+  background-color: #EEB4FF !important;
 }
 
 .btn-outline-secondary,
@@ -37,7 +36,7 @@
 .btn-outline-secondary:focus,
 .btn-outline-secondary:active,
 .btn-outline-secondary.selected {
-  font-family: 'Taviraj', serif !important;
+  font-family: 'Delius', cursive !important;
   font-size: 1.0rem !important;
   font-weight: bold !important;
 }
@@ -47,13 +46,13 @@
 .btn-outline-success:focus,
 .btn-outline-success:active,
 .btn-outline-success.selected {
-  font-family: 'Taviraj', serif !important;
+  font-family: 'Delius', cursive !important;
   font-size: 1.0rem !important;
   font-weight: bold !important;
 }
 
 .Modal-title {
-  font-family: 'Taviraj', serif;
+  font-family: 'Delius', cursive;
   font-weight: bold !important;
 }
 
