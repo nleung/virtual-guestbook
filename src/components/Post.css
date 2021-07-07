@@ -4,6 +4,7 @@
   color: #3b4143;
   margin-bottom: 3rem;
   letter-spacing: 1px;
+  word-wrap: break-word;
 }
 
 .Post-header {
