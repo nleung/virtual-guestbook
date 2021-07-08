@@ -10,8 +10,6 @@ class Post extends React.Component {
       image = (
         <img className="img-fluid w-100" src={this.props.imageURL} alt="Post" />
       );
-    } else if (this.props.comment){
-      image = (<hr/>)
     }
 
     return (

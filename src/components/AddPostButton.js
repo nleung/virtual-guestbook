@@ -197,9 +197,9 @@ class AddPostButton extends React.Component {
               </Form.Group>
               {imagePreview}
               <Form.Group as={Row} controlId="formComment">
-                <Form.Label column sm="2">Comment</Form.Label>
+                <Form.Label column sm="2">Message</Form.Label>
                 <Col sm="10">
-                  <Form.Control as="textarea" name="comment" placeholder="Leave a comment" rows="3" onChange={this.onChange} />
+                  <Form.Control as="textarea" name="comment" placeholder="Leave a message for the couple" rows="3" onChange={this.onChange} />
                 </Col>
               </Form.Group>
             </Form>
